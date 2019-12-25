@@ -40,6 +40,13 @@ function AddData(Mytable, Mycode)
 	var Row_td3=document.createElement('td');
 	Row_td3.innerHTML="&nbsp&nbsp"+GrowthRate;
 	Table_Row.appendChild(Row_td3);
+	
+	
+	var Row_td4=document.createElement('td');
+	Row_td4.innerHTML="&nbsp&nbsp"+Mystring[5]+'~'+Mystring[4];
+	Table_Row.appendChild(Row_td4);
+	
+	
 	Mytable.appendChild(Table_Row);
 }
 </script>
@@ -86,6 +93,12 @@ function AddRow(Mycode)
 	var th3=document.createElement('th');
 	th3.innerHTML='涨幅'+"&nbsp";
 	tb_Head.appendChild(th3);
+	
+	var th4=document.createElement('th');
+	th4.innerHTML='波动'+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+	tb_Head.appendChild(th4);	
+	
+	
 	tab.appendChild(tb_Head);	
 	document.body.appendChild(tab);	
 </script>

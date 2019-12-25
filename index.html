@@ -4,7 +4,18 @@
 	<style type="text/css" charset="gb2312">
 		table{width: 500px;border: 1px solid gray;border-collapse: collapse;}
 		table th,table td{line-height: 70px;text-align: right;border: 1px solid gray;font-size:50px;}
-	</style>
+	</style>	
+	
+<script>
+function GetPrice(Mycode)
+{			
+	var SString = '<script type="text/javascript"  src="http://hq.sinajs.cn/list=';	
+	SString = SString+Mycode+'" ><\/script>';	
+	document.write(SString);
+}
+</script>
+	
+
 <script>
 function AddRow(Mytable, Mycode)
 {	
@@ -12,7 +23,7 @@ function AddRow(Mytable, Mycode)
 	  	Mystring=Mystring.split(",");
 	 
 	 var stockRate=100*(Mystring[3]-Mystring[2])/Mystring[2];
-	 stockRate = stockRate.toFixed(2);	 
+	 		 stockRate = stockRate.toFixed(2);	 
 	// 添加表格内容
 	var tb_Row=document.createElement('tr');	
 	if(stockRate>0)
@@ -40,7 +51,6 @@ function AddRow(Mytable, Mycode)
 	tr1_td3.innerHTML="&nbsp;&nbsp;"+stockRate;
 	tb_Row.appendChild(tr1_td3);
 	Mytable.appendChild(tb_Row);
-
 }
 </script>
 </head>
@@ -72,48 +82,57 @@ function AddRow(Mytable, Mycode)
 	th3.innerHTML='涨幅'+"&nbsp";
 	tb_Head.appendChild(th3);
 
-	tab.appendChild(tb_Head);
+	tab.appendChild(tb_Head);	
 </script>
 
 
 <!- 资源ETF ->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sh510410" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sh510410')	</script>
+<script>	var Code = 'sh510410';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
+
+
+<!- 上海国企 ->
+<script>	var Code = 'sh510810';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
 
 
 <!- 基本面50 ->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sh512750" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sh512750')	</script>
+<script>	var Code = 'sh512750';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
 
 
 <!- 华宝油气->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sz162411" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sz162411')	</script>
+<script>	var Code = 'sz162411';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
+
 
 
 <!- 券商ETF ->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sh512000" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sh512000')	</script>
+<script>	var Code = 'sh512000';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
 
 
 <!- HS300ETF ->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sh510310" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sh510310')	</script>
+<script>	var Code = 'sh510310';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
+
 
 <!- 300红利 ->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sh512530" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sh512530')	</script>
+<script>	var Code = 'sh512530';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
+
 
 <!- 100ETF ->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sh512910" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sh512910')	</script>
+<script>	var Code = 'sh512910';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
+
 
 <!- 180ETF ->
-<script type="text/javascript" src="http://hq.sinajs.cn/list=sh510180" ></script>
-<script type="text/javascript"	>	AddRow(tab, 'sh510180')	</script>
+<script>	var Code = 'sh510180';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
 
 
-<script type='text/javascript'>
+<script>
 	// 将表格添加到页面中
 	document.body.appendChild(tab);
 </script>

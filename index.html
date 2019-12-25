@@ -1,9 +1,9 @@
 <html>
 <head>
-	<meta http-equiv="refresh" content="10">	
+	<meta http-equiv="refresh" content="20">	
 	<style type="text/css" charset="gb2312">
 		table{width: 500px;border: 1px solid gray;border-collapse: collapse;}
-		table th,table td{line-height: 70px;text-align: right;border: 1px solid gray;font-size:50px;}
+		table th,table td{line-height: 70px;text-align: right;border: 1px solid gray;font-size:50px;white-space:nowrap;}
 	</style>	
 	
 <script>
@@ -36,19 +36,19 @@ function AddRow(Mytable, Mycode)
 	}
 		
 	var tr1_td0=document.createElement('td');
-	tr1_td0.innerHTML=Mycode.slice(-6);	
+	tr1_td0.innerHTML="&nbsp&nbsp"+Mycode.slice(-6);	
 	tb_Row.appendChild(tr1_td0);
 	
 	var tr1_td1=document.createElement('td');
-	tr1_td1.innerHTML=Mystring[0];
+	tr1_td1.innerHTML="&nbsp&nbsp"+Mystring[0];
 	tb_Row.appendChild(tr1_td1);
 	
 	var tr1_td2=document.createElement('td');
-	tr1_td2.innerHTML="&nbsp;&nbsp;"+Mystring[3];		
+	tr1_td2.innerHTML="&nbsp&nbsp"+Mystring[3];		
 	tb_Row.appendChild(tr1_td2);
 	
 	var tr1_td3=document.createElement('td');
-	tr1_td3.innerHTML="&nbsp;&nbsp;"+stockRate;
+	tr1_td3.innerHTML="&nbsp&nbsp"+stockRate;
 	tb_Row.appendChild(tr1_td3);
 	Mytable.appendChild(tb_Row);
 }
@@ -106,14 +106,22 @@ function AddRow(Mytable, Mycode)
 <script>	AddRow(tab, Code)		</script>
 
 
-
 <!- 券商ETF ->
 <script>	var Code = 'sh512000';	GetPrice(Code)	</script>
 <script>	AddRow(tab, Code)		</script>
 
+<!- 100ETF ->
+<script>	var Code = 'sh512910';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
 
-<!- HS300ETF ->
-<script>	var Code = 'sh510310';	GetPrice(Code)	</script>
+
+<!- 300ETF ->
+<script>	var Code = 'sh510300';	GetPrice(Code)	</script>
+<script>	AddRow(tab, Code)		</script>
+
+
+<!- 500ETF ->
+<script>	var Code = 'sh510500';	GetPrice(Code)	</script>
 <script>	AddRow(tab, Code)		</script>
 
 
@@ -121,15 +129,6 @@ function AddRow(Mytable, Mycode)
 <script>	var Code = 'sh512530';	GetPrice(Code)	</script>
 <script>	AddRow(tab, Code)		</script>
 
-
-<!- 100ETF ->
-<script>	var Code = 'sh512910';	GetPrice(Code)	</script>
-<script>	AddRow(tab, Code)		</script>
-
-
-<!- 180ETF ->
-<script>	var Code = 'sh510180';	GetPrice(Code)	</script>
-<script>	AddRow(tab, Code)		</script>
 
 
 <script>

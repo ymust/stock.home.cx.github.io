@@ -1,28 +1,38 @@
-<html>
+<script>	
+var MyCodeList = [
+"sh510410",		//资源ETF
+"sh510810",		//上海国企
+"sh512750",		//基本面50
+"sz162411",		//华宝油气
+"sh512000",		//券商ETF
+"sh512400",		//有色ETF
+"sh512760",		//半导体50
+"sh512580",		//环保ETF
+"sh512800",		//银行ETF
+"sz159902",		//中小板
+"sh512530",		//300红利
+"sh512910",		//100ETF
+"sh510300",		//300ETF
+"sh510500",		//500ETF
+];
+</script>
+
+
+
+<html>	
 <head>
 	<meta http-equiv="refresh" content="20">	
 	<style type="text/css" charset="gb2312">
 		table{width: 70%; border: 1px solid gray;border-collapse: collapse;}
 		table th,table td{height: 80px;text-align: right;border: 1px solid gray;font-size:50px;white-space:nowrap;}
-	</style>		
-<script>
-	
-	
-	
-	
-	
-	
-	
-	
+	</style>			
+<script>		
 function CreateTable( )	
 {
 	//1.创建表格节点对象
 	MyTable=document.createElement('table');
-	MyTable.align="center";
-	
+	MyTable.align="center";	
 	//tab.setAttribute("style","font-size:80px;border:1px;");
-
-
 	// 3.添加表头
 	var tb_Head=document.createElement('tr');
 	var th0=document.createElement('th');
@@ -52,26 +62,26 @@ function CreateTable( )
 function AddCaption(Mytable)	
 {
 	var SString = '<script type="text/javascript"  src="http://hq.sinajs.cn/list=s_sh000001,s_sz399001,s_sz399006" ><\/script>';	
-	document.write(SString);	
-	var SS1="沪:";
-	SString = '<script>	var SS=hq_str_s_sh000001; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS1=SS1+num; SS1=SS1+"涨:"+SS[3]; <\/script>';
-	document.write(SString);		
-	var SS2="深:";
-	SString = '<script>	var SS=hq_str_s_sz399001; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS2=SS2+num; SS2=SS2+"涨:"+SS[3]; <\/script>';
 	document.write(SString);
-	var SS3="创:";
-	SString = '<script>	var SS=hq_str_s_sz399006; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS3=SS3+num; SS3=SS3+"涨:"+SS[3]; <\/script>';
-	document.write(SString);		
-	SString = '<script>	var cap=document.createElement("caption");   cap.innerHTML=(SS1+"&nbsp&nbsp&nbsp"+SS2+"&nbsp&nbsp&nbsp"+SS3); MyTable.appendChild(cap); <\/script>';
-	document.write(SString);			
+
+	SString = '<script>	var SS=hq_str_s_sh000001; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS1="沪:"+num; SS1=SS1+"涨:"+SS[3]; <\/script>';
+	document.write(SString);
+
+	SString = '<script>	var SS=hq_str_s_sz399001; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS2="深:"+num; SS2=SS2+"涨:"+SS[3]; <\/script>';
+	document.write(SString);
+
+	SString = '<script>	var SS=hq_str_s_sz399006; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS3="创:"+num; SS3=SS3+"涨:"+SS[3]; <\/script>';
+	document.write(SString);
+		
+	SString = '<script>	var cap=document.createElement("caption");  cap.setAttribute("style","font-size:45px;"); cap.innerHTML=(SS1+"&nbsp&nbsp"+SS2+"&nbsp&nbsp"+SS3); MyTable.appendChild(cap); <\/script>';
+	document.write(SString);	
 }	
 	
-</script>		
-	
+</script>
 	
 	
 <script>	
-function AddData(Mytable, Mycode)
+function AddRow(Mytable, Mycode)
 {	
 	var Mystring=eval('hq_str_'+Mycode);	
 	  	Mystring=Mystring.split(",");
@@ -112,62 +122,30 @@ function AddData(Mytable, Mycode)
 		
 	Mytable.appendChild(Table_Row);
 }
-</script>
 
-</head>
-
-
-<body>
-	
-	
-<script>	
-	var MyTable;		
-	SString = '<script>	CreateTable( ); <\/script>';
-	document.write(SString);
-
-
-
-	var SString = '<script type="text/javascript"  src="http://hq.sinajs.cn/list=s_sh000001,s_sz399001,s_sz399006" ><\/script>';	
-	document.write(SString);	
-	var SS1="沪:";
-	SString = '<script>	var SS=hq_str_s_sh000001; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS1=SS1+num; SS1=SS1+"涨:"+SS[3]; <\/script>';
-	document.write(SString);		
-	var SS2="深:";
-	SString = '<script>	var SS=hq_str_s_sz399001; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS2=SS2+num; SS2=SS2+"涨:"+SS[3]; <\/script>';
-	document.write(SString);
-	var SS3="创:";
-	SString = '<script>	var SS=hq_str_s_sz399006; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS3=SS3+num; SS3=SS3+"涨:"+SS[3]; <\/script>';
-	document.write(SString);		
-	SString = '<script>	var cap=document.createElement("caption");  cap.setAttribute("style","font-size:40px;"); cap.innerHTML=(SS1+"&nbsp&nbsp&nbsp"+SS2+"&nbsp&nbsp&nbsp"+SS3); MyTable.appendChild(cap); <\/script>';
-	document.write(SString);
-		
-		
-		
-	var MyCodeList = [
-	"sh510410",		//资源ETF	
-	"sh510810",		//上海国企	
-	"sh512750",		//基本面50	
-	"sz162411",		//华宝油气	
-	"sh512000",		//券商ETF		
-	"sh512400",		//有色ETF	
-	"sh512910",		//100ETF	
-	"sh510300",		//300ETF	
-	"sh510500",		//500ETF	
-	"sh512530",		//300红利	
-	];
-	
+function AddData()
+{	
 	SString = '<script type="text/javascript"  src="http://hq.sinajs.cn/list=';	
-	SString = SString+MyCodeList+'" ><\/script>';	
-	document.write(SString);
-		
+	SString = SString+MyCodeList+'" ><\/script>';
+	document.write(SString);		
   for (var i = 0; i < MyCodeList.length; i=i+1)
   {
-		SString = '<script>	AddData(MyTable, "'+ MyCodeList[i] + '")		<\/script>';	
+		SString = '<script>	AddRow(MyTable, "'+ MyCodeList[i] + '")		<\/script>';					
 		document.write(SString);
   }
-  
-</script>		
-	
+}
+
+</script>
+
+
+</head>
+<body>	
+<script>	
+	var MyTable;	
+	CreateTable.call();
+	AddCaption.call();	
+	AddData.call();
+</script>
 
 </body>
 

@@ -1,5 +1,7 @@
 <script>	
 var MyCodeList = [
+"sh601186",		//中国铁建
+"sh601600",		//中国铝业
 "sh510410",		//资源ETF
 "sh510810",		//上海国企
 "sh512750",		//基本面50
@@ -17,53 +19,66 @@ var MyCodeList = [
 ];
 </script>
 
-
-
 <html>	
 <head>
 	<meta http-equiv="refresh" content="20">	
 	<style type="text/css" charset="gb2312">
-		table{width: 70%; border: 1px solid gray;border-collapse: collapse;}
-		table th,table td{height: 80px;text-align: right;border: 1px solid gray;font-size:50px;white-space:nowrap;}
-	</style>			
+		
+
+		
+		table{align: right;width: 50%; border: 1px solid gray;border-collapse: collapse;}
+		
+		table th,table td{text-align: right;border: 1px solid gray;white-space:nowrap;}
+	</style>
+			
+<script type="text/javascript">	
+	var FontSize;	
+	function browserRedirect() {
+           var sUserAgent = navigator.userAgent.toLowerCase();
+           if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(sUserAgent)) {
+               //跳转移动端页面
+               FontSize=48;
+           } else {
+               //跳转pc端页面
+               FontSize=22;               
+             }
+       }
+	browserRedirect(); 
+</script>
+
+
 <script>		
-function CreateTable( )	
+function SettingTable( )	
 {
 	//1.创建表格节点对象
-	MyTable=document.createElement('table');
+	MyTable=document.getElementById("tblSort");	
 	MyTable.align="center";	
-	//tab.setAttribute("style","font-size:80px;border:1px;");
-	// 3.添加表头
-	var tb_Head=document.createElement('tr');
-	var th0=document.createElement('th');
-	th0.innerHTML='代码'+"&nbsp&nbsp";
-	tb_Head.appendChild(th0);	
-	var th1=document.createElement('th');
-	th1.innerHTML='名称'+"&nbsp&nbsp&nbsp&nbsp";
-	tb_Head.appendChild(th1);
-	var th2=document.createElement('th');
-	th2.innerHTML='价格'+"&nbsp&nbsp";
-	tb_Head.appendChild(th2);
-	var th3=document.createElement('th');
-	th3.innerHTML='涨幅'+"&nbsp";
-	tb_Head.appendChild(th3);
+	MyTable.setAttribute("style","font-size:"+FontSize+"px;");
+			
+	TableHead=document.getElementById("tbHead");
+	TableHead.setAttribute("style","height: "+FontSize*1.5+"px;");	
+	InputText=document.getElementById("RevisedCode");	
+	InputText.style.fontSize =FontSize;
 	
-	var th4=document.createElement('th');
-	th4.innerHTML='波动'+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-	tb_Head.appendChild(th4);
-		
-	MyTable.appendChild(tb_Head);	
-	document.body.appendChild(MyTable);			
+	AddButton=document.getElementById("AddStock");	
+	AddButton.style.fontSize =FontSize;	
+	
+	DelButton=document.getElementById("DelStock");	
+	DelButton.style.fontSize =FontSize;		
+	
+	ClrButton=document.getElementById("ClearStore");	
+	ClrButton.style.fontSize =FontSize;	
 }	
 </script>		
 	
 		
 <script>		
-function AddCaption(Mytable)	
+function AddCaption()
 {
+	
+	MyTable=document.getElementById("tblSort");	
 	var SString = '<script type="text/javascript"  src="http://hq.sinajs.cn/list=s_sh000001,s_sz399001,s_sz399006" ><\/script>';	
 	document.write(SString);
-
 	SString = '<script>	var SS=hq_str_s_sh000001; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS1="沪:"+num; SS1=SS1+"涨:"+SS[3]; <\/script>';
 	document.write(SString);
 
@@ -72,11 +87,10 @@ function AddCaption(Mytable)
 
 	SString = '<script>	var SS=hq_str_s_sz399006; SS=SS.split(",");  var num =parseInt(SS[1]) ; SS3="创:"+num; SS3=SS3+"涨:"+SS[3]; <\/script>';
 	document.write(SString);
-		
-	SString = '<script>	var cap=document.createElement("caption");  cap.setAttribute("style","font-size:45px;"); cap.innerHTML=(SS1+"&nbsp&nbsp"+SS2+"&nbsp&nbsp"+SS3); MyTable.appendChild(cap); <\/script>';
+
+	SString = '<script>	var cap=document.createElement("caption");  cap.setAttribute("style","font-size:"+FontSize*0.8+"px;"); cap.innerHTML=(SS1+"&nbsp&nbsp"+SS2+"&nbsp&nbsp"+SS3); MyTable.appendChild(cap); <\/script>';
 	document.write(SString);	
-}	
-	
+}
 </script>
 	
 	
@@ -87,19 +101,12 @@ function AddRow(Mytable, Mycode)
 	  	Mystring=Mystring.split(",");
 	 
 	 var GrowthRate=100*(Mystring[3]-Mystring[2])/Mystring[2];
-	 		 GrowthRate = GrowthRate.toFixed(2);	 
+	 		 GrowthRate = GrowthRate.toFixed(2);
+	 		 
 	// 添加表格内容
-	var Table_Row=document.createElement('tr');	
-	if(GrowthRate>0)
-	{		
-		Table_Row.style.color="#000";
-	}
-	else
-	{		
-		Table_Row.style.color="#000";
-	}
+	var Table_Row=document.createElement('tr');
 		
-	var Row_td0=document.createElement('td');
+	var Row_td0=document.createElement('td');	
 	Row_td0.innerHTML="&nbsp"+Mycode.slice(-6);	
 	Table_Row.appendChild(Row_td0);
 	
@@ -118,33 +125,212 @@ function AddRow(Mytable, Mycode)
 	
 	var Row_td4=document.createElement('td');
 	Row_td4.innerHTML="&nbsp"+Mystring[5]+'~'+Mystring[4]+"&nbsp";
-	Table_Row.appendChild(Row_td4);
-		
-	Mytable.appendChild(Table_Row);
+
+	
+	if(GrowthRate>0)
+	{
+		Table_Row.setAttribute("style","color:#F00; height: "+FontSize*1.6+"px;");
+	}
+	else
+	{		
+		Table_Row.setAttribute("style","color:#000; height: "+FontSize*1.6+"px;");
+	}	
+	Table_Row.appendChild(Row_td4);	
+	Mytable.tBodies[0].appendChild(Table_Row);	
 }
 
 function AddData()
-{	
+{
+	var CodeList = localStorage.getItem('YMQSdJxustCodeList');	
+	if(CodeList==null)
+	{
+			CodeList = MyCodeList;			
+			localStorage.setItem('YMQSdJxustCodeList', MyCodeList);
+	}
+	else
+	{			
+			CodeList=CodeList.split(",");
+	}	
 	SString = '<script type="text/javascript"  src="http://hq.sinajs.cn/list=';	
-	SString = SString+MyCodeList+'" ><\/script>';
+	SString = SString+CodeList+'" ><\/script>';
 	document.write(SString);		
-  for (var i = 0; i < MyCodeList.length; i=i+1)
+  for (var i = 0; i < CodeList.length; i=i+1)
   {
-		SString = '<script>	AddRow(MyTable, "'+ MyCodeList[i] + '")		<\/script>';					
+		SString = '<script>	AddRow(MyTable, "'+ CodeList[i] + '")		<\/script>';					
 		document.write(SString);
   }
 }
-
 </script>
 
 
+<script>
+
+function ReviseCodeList(self)
+{
+	var Addcode = document.getElementById('RevisedCode').value;		
+	var CodeList = localStorage.getItem('YMQSdJxustCodeList');			
+	if(self.id=='AddStock')
+	{
+			SString = '<script type="text/javascript"  src="http://hq.sinajs.cn/list=';			
+			SString = SString+"sh"+Addcode+",sz"+Addcode+'" ><\/script>';			
+			document.write(SString);			
+			var SHstring=window["hq_str_sh"+Addcode];						
+			var SZstring=window["hq_str_sz"+Addcode];			
+			//confirm(SZstring.length);			
+			if(typeof SHstring!=="undefined")
+			{				
+				CodeList = "sh"+Addcode+","+CodeList;	
+				CodeList=CodeList.split(",");			
+				localStorage.setItem('YMQSdJxustCodeList', CodeList);
+			}	
+						
+			else if(typeof SZstring!=="undefined")
+			{				
+				CodeList = "sz"+Addcode+","+CodeList;				
+				CodeList=CodeList.split(",");			
+				localStorage.setItem('YMQSdJxustCodeList', CodeList);
+			}	
+	}		
+	else if(self.id=='DelStock')
+	{		
+		var Addcode22 = "sh"+Addcode+",";		
+		CodeList = CodeList.replace(Addcode22, "");		
+		Addcode22 = "sz"+Addcode+",";
+		CodeList = CodeList.replace(Addcode22, "");				
+		CodeList=CodeList.split(",");			
+		localStorage.setItem('YMQSdJxustCodeList', CodeList);
+	}	
+	else if(self.id=='ClearStore')
+	{
+		localStorage.removeItem('YMQSdJxustCodeList');		
+	//	var CodeList = localStorage.getItem('YMQSdJxustCodeList');		
+	//	alert(CodeList);
+	}	
+	location.reload();
+}
+</script>
+
 </head>
-<body>	
+<body>
+		
+<div align="center">
+<table   id = "tblSort" >
+     <thead>
+         <tr  id="tbHead">
+             <th style="text-align:center;"  onclick = "sortTable('tblSort',0);"   > 代码</th >
+             <th style="text-align:center;"  onclick = "sortTable('tblSort',1,);"  > 名称</th >
+             <th style="text-align:center;"  onclick = "sortTable('tblSort',2,'float');" > 价格</th >
+             <th style="text-align:center;"  onclick = "sortTable('tblSort',3,'float');" > 涨幅</th >     
+             <th style="text-align:center;"  onclick = "sortTable('tblSort',4,);" > 波动</th >
+         </tr>
+     </thead >
+     <tbody>
+     </tbody>          
+     <tr>
+         <td  style="text-align:center;"> 代码</td >
+         <td id="CodeText" colspan=2  style="text-align:left;">         	
+         	 <input type=text style= "background:none; outline:none; border:0px;" id="RevisedCode" size=6 >
+         </td >
+         <td colspan=2 style="text-align:center;  vertical-align:middle ">
+         		<input type=submit id="AddStock"  onclick="ReviseCodeList(this)" value="添加">&nbsp&nbsp
+         		<input type=submit id="DelStock"  onclick="ReviseCodeList(this)" value="删除">&nbsp&nbsp
+         		<input type=submit id="ClearStore" onclick="ReviseCodeList(this)" value="重置">
+         </td>
+     </tr>
+</table>
+
+
+				
+</div>
 <script>	
-	var MyTable;	
-	CreateTable.call();
+	var MyTable=document.getElementById("tblSort");
+	SettingTable.call();
 	AddCaption.call();	
 	AddData.call();
+</script>
+
+     
+<script type="text/javascript">
+/**
+ * 比较函数生成器
+ * 
+ * @param iCol    		数据行数
+ * @param sDataType   该行的数据类型
+ * @return
+ */
+function  generateCompareTRs(iCol, sDataType)
+{
+     return   function  compareTRs(oTR1, oTR2)
+     {
+        vValue1 = convert(oTR1.cells[iCol].firstChild.nodeValue, sDataType);
+        vValue2 = convert(oTR2.cells[iCol].firstChild.nodeValue, sDataType);
+         if  (vValue1 > vValue2)
+         {
+             return  -1;
+         }
+         else   if  (vValue1 < vValue2)
+         {
+             return  1;
+         }  else 
+        {
+             return  0;
+         }
+    };
+}
+/**
+ * 处理排序的字段类型
+ * 
+ * @param sValue			字段值 默认为字符类型即比较ASCII码
+ * @param sDataType		字段类型 对于date只支持格式为mm/dd/yyyy或mmmm dd,yyyy(January 12,2004)
+ * @return
+ */
+function  convert(sValue, sDataType)
+{
+     switch  (sDataType)
+     {
+     case   "int" :
+         return  parseInt(sValue);
+     case   "float" :
+         return  parseFloat(sValue);
+     case   "date" :
+         return   new  Date(Date.parse(sValue));
+     default :
+         return  sValue.toString();
+    }
+}
+ 
+/**
+ * 通过表头对表列进行排序
+
+ * @param sTableID		要处理的表ID<table id=''>
+ * @param iCol				字段列id eg: 0 1 2 3 ...
+ * @param sDataType		该字段数据类型 int,float,date 缺省情况下当字符串处理
+ */
+function  sortTable(sTableID, iCol, sDataType)
+{
+    var  oTable = document.getElementById(sTableID);       	
+        	
+     var  oTBody = oTable.tBodies[0];     
+     var  colDataRows = oTBody.rows;
+     var  aTRs =  new  Array;
+     for  (  var  i = 0; i < colDataRows.length; i++) 
+     {
+        aTRs[i] = colDataRows[i];
+     }
+     if  (oTable.sortCol == iCol)
+     {
+        aTRs.reverse();
+     }  else
+     	{
+        aTRs.sort(generateCompareTRs(iCol, sDataType)); 
+      }
+     var  oFragment = document.createDocumentFragment();
+     for  (  var  j = 0; j < aTRs.length; j++) {
+        oFragment.appendChild(aTRs[j]);
+    }
+    oTBody.appendChild(oFragment);
+    oTable.sortCol = iCol;
+}	
 </script>
 
 </body>
